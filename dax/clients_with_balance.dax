@@ -1,0 +1,5 @@
+clientes_whit_balance = 
+CALCULATE(
+    DISTINCTCOUNT('Comprobantes'[Cliente]),
+    'Comprobantes'[Saldo] > 0
+)

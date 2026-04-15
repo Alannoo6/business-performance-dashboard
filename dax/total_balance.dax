@@ -1,0 +1,13 @@
+total_balance = 
+SUMX(
+    FILTER(
+        Comprobantes,
+        NOT ISBLANK(Comprobantes[Saldo])
+    ),
+    ABS(Comprobantes[Saldo]) *
+    IF(
+        UPPER(TRIM(SUBSTITUTE(Comprobantes[Signo], UNICHAR(160), ""))) = "H",
+        -1,
+        1
+    )
+)

@@ -1,0 +1,14 @@
+overdue_balance = 
+SUMX(
+    Comprobantes,
+    VAR Signo = Comprobantes[Signo]
+    VAR Tipo = Comprobantes[Tipo]
+    VAR Importe = ABS(Comprobantes[Saldo])
+    RETURN
+        SWITCH(
+            TRUE(),
+            Signo = "D", Importe,
+            Signo = "H", -Importe,
+            0
+        )
+)
