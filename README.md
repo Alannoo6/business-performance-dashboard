@@ -1,415 +1,171 @@
-\# Business Performance Dashboard (Power BI) – Financial \& Inventory Analysis | Espacio Bazar
-
-
-
-\## Overview
-
-This project presents an interactive Power BI dashboard for comprehensive business performance analysis of the Espacio Bazar unit at Brandteam, covering billing, collections, customer debt, inventory, projected stock, and valued stock — based on real operational data.
-
-
-
-The dashboard enables unified monitoring of financial and inventory KPIs across multiple dimensions, supporting data-driven decision-making for commercial, financial, and operations teams.
-
-
-
-It includes customer debt aging analysis, collections tracking, billing performance, stock level monitoring, projected inventory and valued stock views, with dynamic filters to identify risks and optimization opportunities.
-
-
-
-> \*\*Disclaimer:\*\* All datasets, table names, business identifiers, and sensitive information have been fully anonymized to preserve confidentiality and comply with corporate data protection policies. This repository is for demonstration purposes only.
-
-
-
-
-
-
-
-\## Business Problem
-
-Finance and operations teams require consolidated, reliable visibility over business performance across multiple areas to:
-
-\- Monitor billing and collections in a unified view
-
-\- Track customer debt aging and outstanding balances
-
-\- Control current stock levels and projected inventory
-
-\- Evaluate valued stock for financial reporting
-
-\- Support operational and strategic decision-making
-
-
-
-This dashboard centralizes transactional data from multiple business areas into a single analytical model to deliver a unified, interactive reporting solution.
-
-
-
-
-
-
-
-\## Project Objective
-
-Develop a management dashboard to monitor financial and inventory performance, enabling analysis of billing, collections, customer debt, and stock indicators across multiple dimensions.
-
-
-
-The goal is to provide a flexible analytical tool that allows business users to explore performance indicators, detect risks, and make data-driven decisions.
-
-
-
-
-
-
-
-\## Data Architecture \& Flow
-
-The analytical workflow follows a standard BI pipeline:
-
-
-
-```
-
-SQL Server → Power Query (ETL) → Power BI Semantic Model → Dashboard
-
-```
-
-
-
-\- Extraction of transactional data from SQL Server (billing, collections, debt, inventory)
-
-\- Data transformation and cleansing using Power Query (M language)
-
-\- Semantic model built with relationships and calculated measures in DAX
-
-\- KPI and performance indicator visualization in Power BI
-
-
-
-This approach ensures data consistency between transactional systems and analytical reporting, maintaining scalable and reusable data models.
-
-
-
-
-
-
-
-\## Data Model
-
-The semantic model is built on a **star schema** structure connecting fact and dimension tables across the main business areas. Fact tables capture transactional events (sales, collections, stock movements) while dimension tables provide the analytical context (calendar, products, business units, geography). This design ensures consistent aggregations across multiple business areas and supports time intelligence calculations.
-
-\### Main Model Tables
-
-
-
-| Table | Type | Description |
-
-|-------|------|-------------|
-
-| Fact\_Sales | Fact | Sales transactions by date, customer, and product |
-
-| Fact\_Collections | Fact | Payments received and collector tracking |
-
-| Fact\_Invoices | Fact | Invoice status, due dates, and financial aging |
-
-| Fact\_StockMovements | Fact | Inbound and outbound stock movements |
-
-| Fact\_Stock | Fact | Current stock levels by product and warehouse |
-
-| Fact\_StockValuation | Fact | Stock valued at cost and sale price |
-
-| Fact\_Purchases | Fact | Purchase orders and delivery tracking |
-
-| Fact\_Deliveries | Fact | Units delivered and conversion factors |
-
-| Dim\_Calendar | Dimension | Date table for time intelligence |
-
-| Dim\_Product | Dimension | Item master with family and category |
-
-| Dim\_BusinessUnit | Dimension | Business unit and item type classification |
-
-| Dim\_Province | Dimension | Geographic dimension with country and province |
-
-| Dim\_Region | Dimension | Regional grouping by province |
-
-
-
-
-
-
-
-\## Dashboard Preview
-
-Selected screenshots from the interactive Power BI dashboard. All data has been anonymized for confidentiality and demonstration purposes.
-
-
-
-\### Cover
-
-!\[Cover](dashboard/screenshots/01\_cover.png)
-
-
-
-\### Commercial Performance
-
-!\[Commercial Performance](dashboard/screenshots/02\_commercial\_performance.png)
-
-
-
-\### Accounts Receivable
-
-!\[Accounts Receivable](dashboard/screenshots/03\_accounts\_receivable.png)
-
-
-
-\### Overdue Balance
-
-!\[Overdue Balance](dashboard/screenshots/04\_overdue\_balance.png)
-
-
-
-\### Collections
-
-!\[Collections](dashboard/screenshots/05\_collections.png)
-
-
-
-\### Inventory Control
-
-!\[Inventory Control](dashboard/screenshots/06\_inventory\_control.png)
-
-
-
-\### Inventory Valuation
-
-!\[Inventory Valuation](dashboard/screenshots/07\_inventory\_valuation.png)
-
-
-
-\---
-
-
-
-\## Business Impact
-
-This dashboard contributes to:
-
-\- Improving visibility over financial performance in billing and collections
-
-\- Identifying overdue customer debt and risk concentration by aging
-
-\- Monitoring stock availability and preventing inventory stockouts
-
-\- Supporting valued stock for financial reporting
-
-\- Reducing manual reporting effort by centralizing analysis in a single platform
-
-\- Improving data quality and consistency for management reporting
-
-
-
-\---
-
-
-
-\## Key Features
-
-\- Interactive dashboards with dynamic filters and slicers
-
-\- Billing and collections performance monitoring
-
-\- Customer debt aging analysis with segmentation by due date
-
-\- Current stock and projected inventory views
-
-\- Valued stock reporting
-
-\- Time intelligence calculations for trend analysis
-
-\- KPI monitoring across financial and operational dimensions
-
-
-
-
-
-
-
-\## Technologies Used
-
-
-
-| Technology | Usage |
-
-|------------|-------|
-
-| SQL Server | Data extraction and base dataset construction |
-
-| Power Query (M) | Data transformation and ETL layer |
-
-| Power BI | Data visualization and interactive dashboards |
-
-| DAX | Measures and business logic for advanced analytics |
-
-| GitHub | Version control and project documentation |
-
-
-
-
-
-
-
-\## Dataset Preparation
-
-Data was extracted from transactional databases hosted in SQL Server, covering billing, collections, debt, and inventory tables.
-
-
-
-SQL scripts were developed to build the base datasets used as data sources in Power BI. Power Query was then used to apply transformations, cleanse data, and shape tables for the analytical model.
-
-
-
-SQL scripts used in this stage are located in:
-
-```
-
-sql/
-
-```
-
-
-
-Power Query transformations are documented in:
-
-```
-
-powerquery/
-
-```
-
-
-
-\---
-
-
-
-\## DAX Measures \& Business Logic
-
-DAX measures were implemented to calculate key performance indicators across financial and inventory areas, including:
-
-\- Billing totals and period-over-period variances
-
-\- Collection rate and outstanding balance tracking
-
-\- Customer debt aging and overdue concentration
-
-\- Stock coverage and projected inventory calculations
-
-\- Stock valuation at cost and sale price
-
-\- Time intelligence calculations (MTD, YTD, rolling periods)
-
-
-
-Implemented measures are located in:
-
-```
-
-dax/
-
-```
-
-
-
-
-
-
-
-## Repository Structure
-
-```
-
-business-performance-dashboard/
-
-│
-
-├── sql/                    # SQL scripts for data extraction
-
-├── powerquery/             # Power Query transformation scripts (M)
-
-├── dax/                    # DAX measures and business logic
-
-├── data\_model/             # Data model diagram and documentation
-
-├── dashboard/              # Dashboard screenshots (anonymized)
-
-│   └── screenshots/
-
-│       ├── 01\_cover.png
-
-│       ├── 02\_commercial\_performance.png
-
-│       ├── 03\_accounts\_receivable.png
-
-│       ├── 04\_overdue\_balance.png
-
-│       ├── 05\_collections.png
-
-│       ├── 06\_inventory\_control.png
-
-│       └── 07\_inventory\_valuation.png
-
-├── docs/                   # Additional documentation
-
-│   └── data\_dictionary.md  # Table and field descriptions
-
-└── README.md
-
-```
-
-
-
-
+# Business Performance Dashboard (Power BI)
+### Financial & Inventory Analysis · Espacio Bazar
+ 
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
+![DAX](https://img.shields.io/badge/DAX-0078D4?style=for-the-badge&logo=powerbi&logoColor=white)
+![Power Query](https://img.shields.io/badge/Power_Query-A0522D?style=for-the-badge&logo=powerbi&logoColor=white)
+ 
+> Interactive Power BI dashboard that consolidates billing, collections, customer debt aging, inventory, and stock valuation into a single analytical model. Built on a star schema with 13 fact and dimension tables, powering data-driven decisions for commercial, financial, and operations teams.
+ 
+> **Disclaimer:** All datasets, table names, business identifiers, and sensitive information have been fully anonymized to preserve confidentiality and comply with corporate data protection policies. This repository is for demonstration purposes only.
+ 
+---
+ 
+## Dashboard Preview
+ 
+Selected screenshots from the interactive Power BI dashboard. All data has been anonymized for confidentiality.
+ 
+### Cover
+![Cover](dashboard/screenshots/01_cover.png)
+ 
+### Commercial Performance
+![Commercial Performance](dashboard/screenshots/02_commercial_performance.png)
+ 
+### Accounts Receivable
+![Accounts Receivable](dashboard/screenshots/03_accounts_receivable.png)
+ 
+### Overdue Balance
+![Overdue Balance](dashboard/screenshots/04_overdue_balance.png)
+ 
+### Collections
+![Collections](dashboard/screenshots/05_collections.png)
+ 
+### Inventory Control
+![Inventory Control](dashboard/screenshots/06_inventory_control.png)
+ 
+### Inventory Valuation
+![Inventory Valuation](dashboard/screenshots/07_inventory_valuation.png)
+ 
+---
+ 
 ## Key Findings
-
+ 
 Selected insights extracted from the integrated financial and inventory model:
-
-**Commercial Performance**
+ 
+### Commercial Performance
 - **Strong category concentration:** Mesa (49.1%) and Cocina (25.2%) together represent **74.3% of revenue**, defining the strategic core of the business. Hogar (19.8%) is a relevant secondary contributor.
 - **Critical key-person risk in sales:** the top sales representative alone generates **51.8% of revenue**, and the top 2 sales reps combined reach **~74.5%** — a structural dependency that justifies succession planning and territory rebalancing.
-
-**Accounts Receivable**
+### Accounts Receivable
 - **Healthy aging profile:** the vast majority of the $206M total balance sits in the **0–30 days bucket**, meaning the portfolio is current rather than delinquent. Truly overdue balance is only **$705K (0.34%)** of total receivables.
-- **Debt concentration by client:** the top 5 debtors account for **~47% of total receivables**, and the top 2 sales reps concentrate **~74% of outstanding debt**, allowing focused collection actions coordinated by sales rep.
+- **Debt concentration:** the top 5 debtors account for **~47% of total receivables**, and the top 2 sales reps concentrate **~74% of outstanding debt** — enabling focused collection actions coordinated by sales rep.
 - **Recent debt acceleration:** outstanding balance grew sharply between January and April 2026, a trend that warrants a credit-policy review before it materializes as overdue.
-
-**Collections**
+### Collections
 - **Collection rate of 86.1%** ($1.27B collected out of $1.48B billed) — strong cash conversion, with a clear opportunity to push toward the 90%+ benchmark.
 - **Marked seasonality in cash inflows:** monthly collections peak in May ($203M) and bottom out in February ($44M), a ~4.6× swing that must be anticipated in working-capital planning.
 - **Operational concentration:** a single collector handles **57.5% of all collections** — efficient but exposes the business to continuity risk in case of absence.
-
-**Inventory Control**
-- **Inventory days of 143 (turnover of 2.25× annual):** stock represents approximately 5 months of sales, well above the 30–60 day reference for retail — material overstock and working-capital tied up.
-- **Procurement vs sales mismatch:** purchase spikes of 143K and 101K units far exceed monthly sales (typically under 10K units), suggesting a clear opportunity to refine procurement planning based on actual demand.
+### Inventory Control
+- **Inventory days of 143 (turnover 2.25× annual):** stock represents approximately 5 months of sales, well above the 30–60 day reference for retail — material overstock and working-capital tied up.
+- **Procurement vs sales mismatch:** purchase spikes of 143K and 101K units far exceed monthly sales (typically under 10K units), revealing a clear opportunity to refine procurement planning based on actual demand.
 - **Single-warehouse concentration:** ~95% of available stock sits in one warehouse — efficient logistically but a single point of failure for fulfillment.
-
-**Inventory Valuation**
+### Inventory Valuation
 - **Strong Pareto pattern:** the top 3 brands concentrate **90% of valued stock** and the top 3 families account for **~95%** — justifying a tiered A/B/C inventory management policy.
 - **Data quality opportunity:** multiple SKUs show purchase price = $0, indicating either discontinued items in master data or missing cost information that affects valuation accuracy. A data-quality remediation effort is recommended.
-
 > *All client, salesperson and brand identifiers have been anonymized. Aggregated percentages and absolute figures are preserved for demonstration purposes.*
-
-
+ 
+---
+ 
+## Business Problem & Objective
+ 
+Finance and operations teams require consolidated, reliable visibility over business performance across multiple areas to:
+- Monitor billing and collections in a unified view
+- Track customer debt aging and outstanding balances
+- Control current stock levels and projected inventory
+- Evaluate valued stock for financial reporting
+- Support operational and strategic decision-making
+This dashboard centralizes transactional data from multiple business areas into a single analytical model, providing a flexible interactive tool that allows business users to explore performance indicators, detect risks, and make data-driven decisions.
+ 
+---
+ 
+## Architecture & Tech Stack
+ 
+The analytical workflow follows a standard BI pipeline:
+ 
+```
+SQL Server → Power Query (ETL) → Power BI Semantic Model → Dashboard
+```
+ 
+| Layer | Technology | Purpose |
+|---|---|---|
+| Source | **SQL Server** | Transactional data extraction (billing, collections, debt, inventory) |
+| Transformation | **Power Query (M)** | Data cleansing, shaping and ETL layer |
+| Modeling | **DAX** | Calculated measures and business logic |
+| Visualization | **Power BI** | Interactive dashboards and KPI monitoring |
+| Version Control | **GitHub** | Code, documentation and project history |
+ 
+---
+ 
+## Data Model
+ 
+The semantic model is built on a **star schema** structure connecting fact and dimension tables across the main business areas. Fact tables capture transactional events (sales, collections, stock movements) while dimension tables provide the analytical context (calendar, products, business units, geography). This design ensures consistent aggregations across multiple business areas and supports time intelligence calculations (MTD, YTD, rolling periods).
+ 
+### Main Model Tables
+ 
+| Table | Type | Description |
+|---|---|---|
+| Fact_Sales | Fact | Sales transactions by date, customer, and product |
+| Fact_Collections | Fact | Payments received and collector tracking |
+| Fact_Invoices | Fact | Invoice status, due dates, and financial aging |
+| Fact_StockMovements | Fact | Inbound and outbound stock movements |
+| Fact_Stock | Fact | Current stock levels by product and warehouse |
+| Fact_StockValuation | Fact | Stock valued at cost and sale price |
+| Fact_Purchases | Fact | Purchase orders and delivery tracking |
+| Fact_Deliveries | Fact | Units delivered and conversion factors |
+| Dim_Calendar | Dimension | Date table for time intelligence |
+| Dim_Product | Dimension | Item master with family and category |
+| Dim_BusinessUnit | Dimension | Business unit and item type classification |
+| Dim_Province | Dimension | Geographic dimension with country and province |
+| Dim_Region | Dimension | Regional grouping by province |
+ 
+---
+ 
+## Implementation
+ 
+### Dataset Preparation
+Data was extracted from transactional databases hosted in SQL Server, covering billing, collections, debt, and inventory tables. SQL scripts build the base datasets used as data sources in Power BI; Power Query then applies transformations, cleanses data, and shapes tables for the analytical model.
+ 
+- SQL extraction scripts → [`sql/`](sql/)
+- Power Query transformations → [`powerquery/`](powerquery/)
+### DAX Measures & Business Logic
+DAX measures implement key performance indicators across financial and inventory areas:
+- Billing totals and period-over-period variances
+- Collection rate and outstanding balance tracking
+- Customer debt aging and overdue concentration
+- Stock coverage and projected inventory calculations
+- Stock valuation at cost and sale price
+- Time intelligence calculations (MTD, YTD, rolling periods)
+DAX measures → [`dax/`](dax/)
+ 
+---
+ 
+## Repository Structure
+ 
+```
+business-performance-dashboard/
+├── sql/                    # SQL scripts for data extraction
+├── powerquery/             # Power Query transformation scripts (M)
+├── dax/                    # DAX measures and business logic
+├── data_model/             # Data model diagram and documentation
+├── dashboard/
+│   └── screenshots/        # Dashboard screenshots (anonymized)
+│       ├── 01_cover.png
+│       ├── 02_commercial_performance.png
+│       ├── 03_accounts_receivable.png
+│       ├── 04_overdue_balance.png
+│       ├── 05_collections.png
+│       ├── 06_inventory_control.png
+│       └── 07_inventory_valuation.png
+├── docs/
+│   └── data_dictionary.md  # Table and field descriptions
+└── README.md
+```
+ 
+---
+ 
 ## Roadmap (Optional Improvements)
-
-\- Add incremental refresh for large historical datasets
-
-\- Implement Row-Level Security (RLS) for role-based access
-
-\- Extend the model with profitability and margin analysis
-
-\- Integrate automated refresh flows and monitoring
-
-\- Add what-if parameters for stock projection scenarios
-
-
-
+ 
+- Add incremental refresh for large historical datasets
+- Implement Row-Level Security (RLS) for role-based access
+- Extend the model with profitability and margin analysis
+- Integrate automated refresh flows and monitoring
+- Add what-if parameters for stock projection scenarios
