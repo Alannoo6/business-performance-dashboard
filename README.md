@@ -96,13 +96,7 @@ This approach ensures data consistency between transactional systems and analyti
 
 \## Data Model
 
-The semantic model is built on a star schema structure connecting fact and dimension tables across the main business areas.
-
-
-
-> 📎 Data model diagram — coming soon
-
-
+The semantic model is built on a **star schema** structure connecting fact and dimension tables across the main business areas. Fact tables capture transactional events (sales, collections, stock movements) while dimension tables provide the analytical context (calendar, products, business units, geography). This design ensures consistent aggregations across multiple business areas and supports time intelligence calculations.
 
 \### Main Model Tables
 
