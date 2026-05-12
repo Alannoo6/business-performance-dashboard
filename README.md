@@ -20,7 +20,7 @@ It includes customer debt aging analysis, collections tracking, billing performa
 
 
 
-\---
+
 
 
 
@@ -44,7 +44,7 @@ This dashboard centralizes transactional data from multiple business areas into 
 
 
 
-\---
+
 
 
 
@@ -58,7 +58,7 @@ The goal is to provide a flexible analytical tool that allows business users to 
 
 
 
-\---
+
 
 
 
@@ -90,7 +90,7 @@ This approach ensures data consistency between transactional systems and analyti
 
 
 
-\---
+
 
 
 
@@ -134,7 +134,7 @@ The semantic model is built on a **star schema** structure connecting fact and d
 
 
 
-\---
+
 
 
 
@@ -230,7 +230,7 @@ This dashboard contributes to:
 
 
 
-\---
+
 
 
 
@@ -254,7 +254,7 @@ This dashboard contributes to:
 
 
 
-\---
+
 
 
 
@@ -320,13 +320,11 @@ dax/
 
 
 
-\---
 
 
 
-\## Repository Structure
 
-
+## Repository Structure
 
 ```
 
@@ -370,11 +368,38 @@ business-performance-dashboard/
 
 
 
-\---
+
+## Key Findings
+
+Selected insights extracted from the integrated financial and inventory model:
+
+**Commercial Performance**
+- **Strong category concentration:** Mesa (49.1%) and Cocina (25.2%) together represent **74.3% of revenue**, defining the strategic core of the business. Hogar (19.8%) is a relevant secondary contributor.
+- **Critical key-person risk in sales:** the top sales representative alone generates **51.8% of revenue**, and the top 2 sales reps combined reach **~74.5%** — a structural dependency that justifies succession planning and territory rebalancing.
+
+**Accounts Receivable**
+- **Healthy aging profile:** the vast majority of the $206M total balance sits in the **0–30 days bucket**, meaning the portfolio is current rather than delinquent. Truly overdue balance is only **$705K (0.34%)** of total receivables.
+- **Debt concentration by client:** the top 5 debtors account for **~47% of total receivables**, and the top 2 sales reps concentrate **~74% of outstanding debt**, allowing focused collection actions coordinated by sales rep.
+- **Recent debt acceleration:** outstanding balance grew sharply between January and April 2026, a trend that warrants a credit-policy review before it materializes as overdue.
+
+**Collections**
+- **Collection rate of 86.1%** ($1.27B collected out of $1.48B billed) — strong cash conversion, with a clear opportunity to push toward the 90%+ benchmark.
+- **Marked seasonality in cash inflows:** monthly collections peak in May ($203M) and bottom out in February ($44M), a ~4.6× swing that must be anticipated in working-capital planning.
+- **Operational concentration:** a single collector handles **57.5% of all collections** — efficient but exposes the business to continuity risk in case of absence.
+
+**Inventory Control**
+- **Inventory days of 143 (turnover of 2.25× annual):** stock represents approximately 5 months of sales, well above the 30–60 day reference for retail — material overstock and working-capital tied up.
+- **Procurement vs sales mismatch:** purchase spikes of 143K and 101K units far exceed monthly sales (typically under 10K units), suggesting a clear opportunity to refine procurement planning based on actual demand.
+- **Single-warehouse concentration:** ~95% of available stock sits in one warehouse — efficient logistically but a single point of failure for fulfillment.
+
+**Inventory Valuation**
+- **Strong Pareto pattern:** the top 3 brands concentrate **90% of valued stock** and the top 3 families account for **~95%** — justifying a tiered A/B/C inventory management policy.
+- **Data quality opportunity:** multiple SKUs show purchase price = $0, indicating either discontinued items in master data or missing cost information that affects valuation accuracy. A data-quality remediation effort is recommended.
+
+> *All client, salesperson and brand identifiers have been anonymized. Aggregated percentages and absolute figures are preserved for demonstration purposes.*
 
 
-
-\## Roadmap (Optional Improvements)
+## Roadmap (Optional Improvements)
 
 \- Add incremental refresh for large historical datasets
 
