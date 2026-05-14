@@ -106,6 +106,8 @@ SQL Server -> Power Query (ETL) -> Power BI Semantic Model -> Dashboard
 
 The semantic model is built on a **star schema** structure connecting fact and dimension tables across the main business areas. Fact tables capture transactional events (sales, collections, stock movements) while dimension tables provide the analytical context (calendar, products, business units, geography). This design ensures consistent aggregations across multiple business areas and supports time intelligence calculations (MTD, YTD, rolling periods).
 
+![Data Model](data_model/data_model.png)
+
 ### Main Model Tables
 
 | Table | Type | Description |
